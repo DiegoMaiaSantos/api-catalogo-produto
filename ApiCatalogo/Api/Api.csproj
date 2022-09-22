@@ -10,4 +10,23 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Src\Config\Environments\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Application\Http\Controllers\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Domain\Dtos\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Services\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Repositories\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Domain\Models\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Infra\CrossCutting\Helpers\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Infra\Ioc\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Infra\Data\Repository\Entity\" />
+    <Folder Include="Src\Modules\ApiCatalogo\Services\" />
+    <Folder Include="Src\Shared\Application\Errors\" />
+    <Folder Include="Src\Shared\Application\Http\Response\" />
+    <Folder Include="Src\Shared\Domain\" />
+    <Folder Include="Src\Shared\Infra\CrossCutting\Helpers\" />
+    <Folder Include="Src\Shared\Infra\Data\Connection\Interface\" />
+    <Folder Include="Src\Shared\Infra\Ioc\Factorys\" />
+  </ItemGroup>
+
 </Project>
