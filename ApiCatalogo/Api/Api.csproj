@@ -16,7 +16,6 @@
     <Folder Include="Src\Modules\ApiCatalogo\Domain\Dtos\" />
     <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Repositories\" />
     <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Services\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Domain\Models\" />
     <Folder Include="Src\Modules\ApiCatalogo\Infra\CrossCutting\Helpers\" />
     <Folder Include="Src\Modules\ApiCatalogo\Infra\Data\Repository\Entity\" />
     <Folder Include="Src\Modules\ApiCatalogo\Infra\Ioc\" />
