@@ -27,7 +27,6 @@
     <Folder Include="Src\Shared\Application\Http\Response\" />
     <Folder Include="Src\Shared\Domain\" />
     <Folder Include="Src\Shared\Infra\CrossCutting\Helpers\" />
-    <Folder Include="Src\Shared\Infra\Data\Connection\Interface\" />
     <Folder Include="Src\Shared\Infra\Ioc\Factorys\" />
   </ItemGroup>
 
