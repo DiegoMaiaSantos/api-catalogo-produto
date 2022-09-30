@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src\Config\Environments\" />
     <Folder Include="Src\Modules\ApiCatalogo\Application\Http\Controllers\" />
     <Folder Include="Src\Modules\ApiCatalogo\Domain\Dtos\" />
     <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Repositories\" />
