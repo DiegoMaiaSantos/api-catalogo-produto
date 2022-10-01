@@ -1,11 +1,14 @@
 ﻿using Api.Src.Config.Environments;
+using Api.Src.Shared.Infra.Ioc.Factorys;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
+using System.Net.Mime;
 
 namespace Api.Src.Shared.Infra.Ioc
 {
-    public class DependencyContainer
+    public static class DependencyContainer
     {
         public static IServiceCollection RegisterDependencies(this IServiceCollection services)
         {
@@ -50,6 +53,7 @@ namespace Api.Src.Shared.Infra.Ioc
         {
             services.AddHealthChecks()
                 .AddMySql(connectionString: Constants.ConnectionString);
+
             return services;
         }
 
