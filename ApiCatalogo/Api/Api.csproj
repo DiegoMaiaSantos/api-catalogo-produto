@@ -26,8 +26,6 @@
     <Folder Include="Src\Modules\ApiCatalogo\Infra\CrossCutting\Helpers\" />
     <Folder Include="Src\Modules\ApiCatalogo\Infra\Ioc\" />
     <Folder Include="Src\Modules\ApiCatalogo\Services\" />
-    <Folder Include="Src\Shared\Application\Errors\" />
-    <Folder Include="Src\Shared\Application\Http\Response\" />
     <Folder Include="Src\Shared\Domain\" />
     <Folder Include="Src\Shared\Infra\CrossCutting\Helpers\" />
   </ItemGroup>
