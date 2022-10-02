@@ -39,7 +39,7 @@ namespace Api.Src.Shared.Infra.Ioc
                         Description = description,
                         Contact = new OpenApiContact
                         {
-                            Name = "Diego Maia Santos",
+                            Name = "Diego Maia",
                             Email = "diegom.santos03@gmail.com",
                         },
                         License = new OpenApiLicense { Name = "Diego Maia Desenvolvedor - All Rights Reserved." }
