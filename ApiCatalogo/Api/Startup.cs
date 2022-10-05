@@ -1,4 +1,5 @@
-﻿using Api.Src.Shared.Infra.Ioc;
+﻿
+using Api.Src.Infra.Ioc;
 
 namespace Api
 {
