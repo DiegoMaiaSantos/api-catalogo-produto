@@ -19,15 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src\Modules\ApiCatalogo\Application\Http\Controllers\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Domain\Dtos\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Repositories\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Domain\Interfaces\Services\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Infra\CrossCutting\Helpers\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Infra\Ioc\" />
-    <Folder Include="Src\Modules\ApiCatalogo\Services\" />
-    <Folder Include="Src\Shared\Domain\" />
-    <Folder Include="Src\Shared\Infra\CrossCutting\Helpers\" />
+    <Folder Include="Src\Application\Controllers\" />
+    <Folder Include="Src\Domain\Dtos\" />
+    <Folder Include="Src\Domain\Interfaces\Repositories\" />
+    <Folder Include="Src\Domain\Interfaces\Services\" />
+    <Folder Include="Src\Infra\CrossCutting\Helpers\" />
+    <Folder Include="Src\Infra\Data\Repositories\" />
+    <Folder Include="Src\Services\" />
   </ItemGroup>
 
 </Project>

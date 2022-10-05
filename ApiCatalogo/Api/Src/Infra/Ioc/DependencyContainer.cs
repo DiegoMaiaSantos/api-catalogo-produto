@@ -6,7 +6,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Net.Mime;
 
-namespace Api.Src.Shared.Infra.Ioc
+namespace Api.Src.Infra.Ioc
 {
     public static class DependencyContainer
     {
@@ -52,7 +52,7 @@ namespace Api.Src.Shared.Infra.Ioc
         public static IServiceCollection RegisterHealthChecks(this IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddMySql(connectionString: Constants.ConnectionString);
+                .AddMySql(connectionString: Constants.ConnectionStringCatalogo);
 
             return services;
         }
