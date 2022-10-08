@@ -15,7 +15,26 @@ namespace Api.Src.Services
             _categoriaRepository = categoriaRepository;
         }
 
-        public async Task<Categoria> Execute(int categoriaId)
+        public async Task<IEnumerable<Categoria>> GetAll()
+        {
+            try
+            {
+                var categorias = await _categoriaRepository.FindAll();
+
+                if (categorias is null)
+                    throw new AppException("Categorias não encontradas.", 
+                        StatusCodes.Status404NotFound);
+
+                return categorias;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Erro ao executar o serviço que mostra as categorias: {ex.Message}");
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public async Task<Categoria> GetId(int categoriaId)
         {
             try
             {
@@ -29,7 +48,7 @@ namespace Api.Src.Services
             } 
             catch (Exception ex)
             {
-                Log.Error($"Erro ao executar o serviço que mostra as categorias: {ex.Message}");
+                Log.Error($"Erro ao executar o serviço que mostra a id das categorias: {ex.Message}");
                 throw new ArgumentException(ex.Message);
             }
         }
