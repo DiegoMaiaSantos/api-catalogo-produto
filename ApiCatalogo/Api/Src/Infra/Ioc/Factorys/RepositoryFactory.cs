@@ -1,5 +1,7 @@
-﻿using Api.Src.Infra.Data.Contexts;
+﻿using Api.Src.Domain.Interfaces.Repositories;
+using Api.Src.Infra.Data.Contexts;
 using Api.Src.Infra.Data.Contexts.Interface;
+using Api.Src.Infra.Data.Repositories;
 
 namespace Api.Src.Shared.Infra.Ioc.Factorys
 {
@@ -8,6 +10,7 @@ namespace Api.Src.Shared.Infra.Ioc.Factorys
         public static IServiceCollection RegisterRepositories(this IServiceCollection repositories)
         {
             repositories.AddScoped<IUnitOfWork, UnitOfWork>();
+            repositories.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
             return repositories;        
         }
