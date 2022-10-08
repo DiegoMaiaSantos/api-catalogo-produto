@@ -1,5 +1,7 @@
 ﻿
+using Api.Src.Config.Environments;
 using Api.Src.Infra.Ioc;
+using Microsoft.OpenApi.Models;
 
 namespace Api
 {
@@ -41,8 +43,14 @@ namespace Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiCatalogo v1"));
+                app.UseSwagger(swaggerOptions =>
+                {
+                    swaggerOptions.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+                    {
+                        swaggerDoc.Servers = new List<OpenApiServer> { new() { Url = Constants.APP_URL } };
+                    });
+                });
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("v1/swagger.json", "ApiCatalogo v1"));
 
             }
             app.UseCors("AllowAll");
@@ -56,6 +64,7 @@ namespace Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHealthChecks();
             });
         }
     }

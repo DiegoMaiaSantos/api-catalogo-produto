@@ -52,7 +52,7 @@ namespace Api.Src.Infra.Ioc
         public static IServiceCollection RegisterHealthChecks(this IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddMySql(connectionString: Constants.ConnectionStringCatalogo);
+                .AddSqlServer(connectionString: Constants.ConnectionStringCatalogo);
 
             return services;
         }
