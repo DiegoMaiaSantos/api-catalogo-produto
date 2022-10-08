@@ -10,7 +10,7 @@ namespace Api.Src.Shared.Infra.Ioc.Factorys
         {
             connections.AddDbContext<CatalogoDBContext>(options =>
             {
-                options.UseMySql(Constants.ConnectionStringCatalogo);
+                options.UseSqlServer(Constants.ConnectionStringCatalogo);
             });
 
             return connections;
