@@ -4,6 +4,8 @@ namespace Api.Src.Domain.Interfaces.Services
 {
     public interface ICategoriaService
     {
-        public Task<Categoria> Execute(int categoriaId);
+        public Task<IEnumerable<Categoria>> GetAll();
+        public Task<Categoria> GetId(int categoriaId);
+        public Task<Categoria> PostCate(Categoria categoria);
     }
 }
