@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Src\Domain\Dtos\" />
     <Folder Include="Src\Infra\CrossCutting\Helpers\" />
-    <Folder Include="Src\Infra\Data\Repositories\" />
   </ItemGroup>
 
 </Project>
