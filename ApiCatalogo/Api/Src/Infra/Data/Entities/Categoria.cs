@@ -7,6 +7,6 @@ namespace Api.Src.Modules.ApiCatalogo.Domain.Models
         public int CategoriaId { get; set; }
         public string? Nome { get; set; }
         public string? ImagemUrl { get; set; }
-        public ICollection<Produto>? Produtos { get; set; } = new Collection<Produto>();
+        public virtual ICollection<Produto>? Produtos { get; set; }
     }
 }
