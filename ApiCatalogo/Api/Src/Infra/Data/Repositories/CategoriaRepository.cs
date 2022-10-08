@@ -39,7 +39,23 @@ namespace Api.Src.Infra.Data.Repositories
             }
             catch (Exception ex)
             {
-                Log.Error("Erro na busca da categoria por id");
+                Log.Error("Erro na busca da categoria por id.");
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<Categoria> CreateNewCategoria(Categoria categoria)
+        {
+            try
+            {
+                await _catalogoDBContext.Categorias.AddAsync(categoria);
+                await _catalogoDBContext.SaveChangesAsync();
+
+                return categoria;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Erro ao criar uma nova categoria.");
                 throw new Exception(ex.Message);
             }
         }

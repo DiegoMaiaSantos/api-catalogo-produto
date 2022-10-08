@@ -52,5 +52,24 @@ namespace Api.Src.Services
                 throw new ArgumentException(ex.Message);
             }
         }
+
+        public async Task<Categoria> PostCate(Categoria categoria)
+        {
+            try
+            {
+                Categoria result = await _categoriaRepository.CreateNewCategoria(categoria);
+
+                if (result is null)
+                    throw new AppException("Solicitação para criar uma nova categoria inválida.",
+                        StatusCodes.Status400BadRequest);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Erro no serviço que cria uma nova categoria: {ex.Message}");
+                throw new ArgumentException(ex.Message);
+            }
+        }
     }
 }

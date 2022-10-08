@@ -6,5 +6,6 @@ namespace Api.Src.Domain.Interfaces.Services
     {
         public Task<IEnumerable<Categoria>> GetAll();
         public Task<Categoria> GetId(int categoriaId);
+        public Task<Categoria> PostCate(Categoria categoria);
     }
 }

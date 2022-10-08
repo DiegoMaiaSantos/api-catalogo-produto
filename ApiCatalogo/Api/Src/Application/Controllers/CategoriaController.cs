@@ -33,7 +33,7 @@ namespace Api.Src.Application.Controllers
             }
         }
 
-        [HttpGet("{categoriaId}")]
+        [HttpGet("{categoriaId}", Name ="ObterCategoria")]
         public async Task<ActionResult> GetCategoria([FromRoute] int categoriaId)
         {
             try
@@ -50,11 +50,14 @@ namespace Api.Src.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PutCategoria()
+        public async Task<ActionResult> PostCategoria(Categoria categoria)
         {
             try
             {
-                return Ok();
+                var data = await _categoriaService.PostCate(categoria);
+
+                return Ok(new CreatedAtRouteResult("ObterCategoria",
+                    new { categoriaId = data.CategoriaId }, data));
             }
             catch (AppException ex)
             {
