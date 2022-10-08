@@ -12,9 +12,9 @@ namespace Api.Src.Infra.Data.Mappers
 
             builder.HasKey(e => e.CategoriaId);
 
-            builder.HasOne(e => e.)
-                .WithMany(e => e.)
-                .HasForeignKey(e => e.);
+            builder.HasMany(e => e.Produtos)
+                .WithOne(e => e.Categoria)
+                .HasForeignKey(e => e.ProdutoId);
 
             builder.Property(e => e.CategoriaId)
                 .HasColumnName("CATEGORIA_ID");
