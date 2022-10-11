@@ -53,7 +53,7 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<Categoria> PostCate(Categoria categoria)
+        public async Task<Categoria> PostNew(Categoria categoria)
         {
             try
             {
@@ -68,6 +68,25 @@ namespace Api.Src.Services
             catch (Exception ex)
             {
                 Log.Error($"Erro no serviço que cria uma nova categoria: {ex.Message}");
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public async Task<Categoria> PostUpdate(Categoria categoria)
+        {
+            try
+            {
+                var result = await _categoriaRepository.UpdateCategoria(categoria);
+
+                if (result.CategoriaId != categoria.CategoriaId)
+                    throw new AppException("Solicitação para atualizar uma categoria inválida.",
+                        StatusCodes.Status400BadRequest);                
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Erro no serviço que atualiza a categoria: {ex.Message}");
                 throw new ArgumentException(ex.Message);
             }
         }

@@ -59,5 +59,22 @@ namespace Api.Src.Infra.Data.Repositories
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<Categoria> UpdateCategoria(Categoria categoria)
+        {
+            try
+            {
+                _catalogoDBContext.Entry(categoria).State = EntityState.Modified;
+                await _catalogoDBContext.SaveChangesAsync();
+
+                return categoria;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Erro ao atualizar uma categoria.");
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
