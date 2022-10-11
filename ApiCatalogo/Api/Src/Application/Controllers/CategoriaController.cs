@@ -54,7 +54,7 @@ namespace Api.Src.Application.Controllers
         {
             try
             {
-                var data = await _categoriaService.PostCate(categoria);
+                var data = await _categoriaService.PostNew(categoria);
 
                 return Ok(new CreatedAtRouteResult("ObterCategoria",
                     new { categoriaId = data.CategoriaId }, data));
@@ -66,12 +66,14 @@ namespace Api.Src.Application.Controllers
             }
         }
 
-        [HttpPut]
-        public async Task<ActionResult> PostCategoria()
+        [HttpPut("{categoriaId}")]
+        public async Task<ActionResult> PutCategoria([FromBody] Categoria categoria)
         {
             try
             {
-                return Ok();
+                var data = await _categoriaService.PostUpdate(categoria);
+
+                return Ok(data);
             }
             catch (AppException ex)
             {
