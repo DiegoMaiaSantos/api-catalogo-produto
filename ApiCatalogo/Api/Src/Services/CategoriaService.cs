@@ -1,7 +1,9 @@
-﻿using Api.Src.Domain.Interfaces.Repositories;
+﻿using Api.Src.Domain.Dtos;
+using Api.Src.Domain.Interfaces.Repositories;
 using Api.Src.Domain.Interfaces.Services;
 using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
+using AutoMapper;
 using Serilog;
 
 namespace Api.Src.Services
@@ -9,23 +11,25 @@ namespace Api.Src.Services
     public class CategoriaService : ICategoriaService
     {
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly IMapper _mapper;
 
-        public CategoriaService(ICategoriaRepository categoriaRepository)
+        public CategoriaService(ICategoriaRepository categoriaRepository, IMapper mapper)
         {
             _categoriaRepository = categoriaRepository;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Categoria>> GetAll()
+        public async Task<IEnumerable<CategoriaDto>> GetAll()
         {
             try
             {
                 var result = await _categoriaRepository.FindAll();
 
                 if (result is null)
-                    throw new AppException("Categorias não encontradas.", 
+                    throw new AppException("A lista de categorias não foi encontrada.", 
                         StatusCodes.Status404NotFound);
 
-                return result;
+                return _mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaDto>>(result);
             }
             catch (Exception ex)
             {

@@ -1,7 +1,7 @@
-﻿using Api.Src.Domain.Interfaces.Services;
+﻿using Api.Src.Domain.Dtos;
+using Api.Src.Domain.Interfaces.Services;
 using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Src.Application.Controllers
@@ -18,7 +18,7 @@ namespace Api.Src.Application.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Categoria>>> GetCategoria()
+        public async Task<ActionResult<IEnumerable<CategoriaDto>>> GetCategoria()
         {
             try
             {
