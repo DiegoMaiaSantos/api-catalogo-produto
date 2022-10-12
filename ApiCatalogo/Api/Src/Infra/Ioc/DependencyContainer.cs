@@ -5,6 +5,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using System.Net.Mime;
+using System.Reflection;
 
 namespace Api.Src.Infra.Ioc
 {
@@ -29,9 +30,9 @@ namespace Api.Src.Infra.Ioc
             string title,
             string description)
         {
-            services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(swagger =>
             {
-                c.SwaggerDoc("v1",
+                swagger.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
                         Title = title,
@@ -44,6 +45,10 @@ namespace Api.Src.Infra.Ioc
                         },
                         License = new OpenApiLicense { Name = "Diego Maia Desenvolvedor - All Rights Reserved." }
                     });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                swagger.IncludeXmlComments(xmlPath);
             });
 
             return services;
