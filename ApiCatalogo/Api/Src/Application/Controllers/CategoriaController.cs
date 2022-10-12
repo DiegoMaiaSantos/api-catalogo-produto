@@ -71,7 +71,7 @@ namespace Api.Src.Application.Controllers
         {
             try
             {
-                var data = await _categoriaService.PostUpdate(categoria);
+                var data = await _categoriaService.PutUpdate(categoria);
 
                 return Ok(data);
             }
@@ -82,12 +82,14 @@ namespace Api.Src.Application.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteCategoria()
+        [HttpDelete("{categoriaId}")]
+        public async Task<ActionResult> DeleteCategoria([FromRoute] int categoriaId)
         {
             try
             {
-                return Ok();
+                var data = await _categoriaService.DeleteCategory(categoriaId);
+
+                return Ok(data);
             }
             catch (AppException ex)
             {
