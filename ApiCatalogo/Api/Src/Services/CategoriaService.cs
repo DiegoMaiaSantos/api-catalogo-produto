@@ -1,7 +1,9 @@
-﻿using Api.Src.Domain.Interfaces.Repositories;
+﻿using Api.Src.Domain.Dtos;
+using Api.Src.Domain.Interfaces.Repositories;
 using Api.Src.Domain.Interfaces.Services;
 using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
+using AutoMapper;
 using Serilog;
 
 namespace Api.Src.Services
@@ -9,23 +11,25 @@ namespace Api.Src.Services
     public class CategoriaService : ICategoriaService
     {
         private readonly ICategoriaRepository _categoriaRepository;
+        private readonly IMapper _mapper;
 
-        public CategoriaService(ICategoriaRepository categoriaRepository)
+        public CategoriaService(ICategoriaRepository categoriaRepository, IMapper mapper)
         {
             _categoriaRepository = categoriaRepository;
+            _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Categoria>> GetAll()
+        public async Task<IEnumerable<CategoriaDto>> GetAll()
         {
             try
             {
-                var categorias = await _categoriaRepository.FindAll();
+                var result = await _categoriaRepository.FindAll();
 
-                if (categorias is null)
-                    throw new AppException("Categorias não encontradas.", 
+                if (result is null)
+                    throw new AppException("A lista de categorias não foi encontrada.", 
                         StatusCodes.Status404NotFound);
 
-                return categorias;
+                return _mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaDto>>(result);
             }
             catch (Exception ex)
             {
@@ -38,13 +42,13 @@ namespace Api.Src.Services
         {
             try
             {
-                Categoria categoria = await _categoriaRepository.FindById(categoriaId);
+                var result = await _categoriaRepository.FindById(categoriaId);
 
-                if (categoria == null)
+                if (result == null)
                     throw new AppException($"O id: {categoriaId} não existe na categoria.", 
                         StatusCodes.Status404NotFound);
 
-                return categoria;
+                return result;
             } 
             catch (Exception ex)
             {
@@ -57,7 +61,7 @@ namespace Api.Src.Services
         {
             try
             {
-                Categoria result = await _categoriaRepository.CreateNewCategoria(categoria);
+                var result = await _categoriaRepository.CreateNewCategoria(categoria);
 
                 if (result is null)
                     throw new AppException("Solicitação para criar uma nova categoria inválida.",
@@ -72,7 +76,7 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<Categoria> PostUpdate(Categoria categoria)
+        public async Task<Categoria> PutUpdate(Categoria categoria)
         {
             try
             {
@@ -87,6 +91,25 @@ namespace Api.Src.Services
             catch (Exception ex)
             {
                 Log.Error($"Erro no serviço que atualiza a categoria: {ex.Message}");
+                throw new ArgumentException(ex.Message);
+            }
+        }
+
+        public async Task<Categoria> DeleteCategory(int categoriaId)
+        {
+            try
+            {
+                var result = await _categoriaRepository.DeleteById(categoriaId);
+
+                if (result is null)
+                    throw new AppException($"O id: {categoriaId} não existe na categoria.",
+                        StatusCodes.Status404NotFound);
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Erro ao executar o serviço que deleta a categoria por id: {ex.Message}");
                 throw new ArgumentException(ex.Message);
             }
         }

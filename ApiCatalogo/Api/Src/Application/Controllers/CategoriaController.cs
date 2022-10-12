@@ -1,7 +1,7 @@
-﻿using Api.Src.Domain.Interfaces.Services;
+﻿using Api.Src.Domain.Dtos;
+using Api.Src.Domain.Interfaces.Services;
 using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Src.Application.Controllers
@@ -18,7 +18,7 @@ namespace Api.Src.Application.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Categoria>>> GetCategoria()
+        public async Task<ActionResult<IEnumerable<CategoriaDto>>> GetCategoria()
         {
             try
             {
@@ -71,7 +71,7 @@ namespace Api.Src.Application.Controllers
         {
             try
             {
-                var data = await _categoriaService.PostUpdate(categoria);
+                var data = await _categoriaService.PutUpdate(categoria);
 
                 return Ok(data);
             }
@@ -82,12 +82,14 @@ namespace Api.Src.Application.Controllers
             }
         }
 
-        [HttpDelete]
-        public async Task<ActionResult> DeleteCategoria()
+        [HttpDelete("{categoriaId}")]
+        public async Task<ActionResult> DeleteCategoria([FromRoute] int categoriaId)
         {
             try
             {
-                return Ok();
+                var data = await _categoriaService.DeleteCategory(categoriaId);
+
+                return Ok(data);
             }
             catch (AppException ex)
             {

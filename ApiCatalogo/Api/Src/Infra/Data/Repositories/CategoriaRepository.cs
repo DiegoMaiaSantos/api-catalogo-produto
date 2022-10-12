@@ -19,14 +19,12 @@ namespace Api.Src.Infra.Data.Repositories
         {
             try
             {
-                var categorias = await _catalogoDBContext.Categorias.ToListAsync();
-
-                return categorias;
+                return await _catalogoDBContext.Categorias.ToListAsync();                
             }
             catch (Exception ex)
             {
                 Log.Error("Erro na busca da lista de categorias.");
-                throw new Exception(ex.Message);
+                throw new ArgumentException(ex.Message);
             }
         }
 
@@ -40,7 +38,7 @@ namespace Api.Src.Infra.Data.Repositories
             catch (Exception ex)
             {
                 Log.Error("Erro na busca da categoria por id.");
-                throw new Exception(ex.Message);
+                throw new ArgumentException(ex.Message);
             }
         }
 
@@ -56,7 +54,7 @@ namespace Api.Src.Infra.Data.Repositories
             catch (Exception ex)
             {
                 Log.Error("Erro ao criar uma nova categoria.");
-                throw new Exception(ex.Message);
+                throw new ArgumentException(ex.Message);
             }
         }
 
@@ -72,9 +70,27 @@ namespace Api.Src.Infra.Data.Repositories
             catch (Exception ex)
             {
                 Log.Error("Erro ao atualizar uma categoria.");
-                throw new Exception(ex.Message);
+                throw new ArgumentException(ex.Message);
             }
         }
 
+        public async Task<Categoria> DeleteById(int categoriaId)
+        {
+            try
+            {
+                var result = await _catalogoDBContext.Categorias.FirstOrDefaultAsync(
+                    c => c.CategoriaId == categoriaId);
+
+                 _catalogoDBContext.Categorias.Remove(result);
+                await _catalogoDBContext.SaveChangesAsync();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Erro ao deletar a categoria.");
+                throw new ArgumentException(ex.Message);
+            }
+        }
     }
 }

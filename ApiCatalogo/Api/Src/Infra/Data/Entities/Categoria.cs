@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace Api.Src.Modules.ApiCatalogo.Domain.Models
+﻿namespace Api.Src.Modules.ApiCatalogo.Domain.Models
 {
     public class Categoria
     {
