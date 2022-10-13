@@ -17,8 +17,12 @@ namespace Api.Src.Application.Controllers
             _categoriaService = categoriaService;
         }
 
+        /// <summary>
+        /// Busca uma lista das categorias
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoriaDto>>> GetCategoria()
+        public async Task<ActionResult<IEnumerable<CategoriaDto>>> GetAllCategoria()
         {
             try
             {
@@ -33,8 +37,13 @@ namespace Api.Src.Application.Controllers
             }
         }
 
-        [HttpGet("{categoriaId}", Name ="ObterCategoria")]
-        public async Task<ActionResult> GetCategoria([FromRoute] int categoriaId)
+        /// <summary>
+        /// Busca uma categoria pela id
+        /// </summary>
+        /// <param name="categoriaId"></param>
+        /// <returns></returns>
+        [HttpGet("{categoriaId}")]
+        public async Task<ActionResult> GetByIdCategoria([FromRoute] int categoriaId)
         {
             try
             {
@@ -49,6 +58,11 @@ namespace Api.Src.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Cria uma nova categoria
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult> PostCategoria(Categoria categoria)
         {
@@ -56,8 +70,7 @@ namespace Api.Src.Application.Controllers
             {
                 var data = await _categoriaService.PostNew(categoria);
 
-                return Ok(new CreatedAtRouteResult("ObterCategoria",
-                    new { categoriaId = data.CategoriaId }, data));
+                return Ok(data);
             }
             catch (AppException ex)
             {
@@ -66,6 +79,11 @@ namespace Api.Src.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Atualiza uma categoria pela id
+        /// </summary>
+        /// <param name="categoria"></param>
+        /// <returns></returns>
         [HttpPut("{categoriaId}")]
         public async Task<ActionResult> PutCategoria([FromBody] Categoria categoria)
         {
@@ -82,6 +100,11 @@ namespace Api.Src.Application.Controllers
             }
         }
 
+        /// <summary>
+        /// Deleta uma categoria pela id
+        /// </summary>
+        /// <param name="categoriaId"></param>
+        /// <returns></returns>
         [HttpDelete("{categoriaId}")]
         public async Task<ActionResult> DeleteCategoria([FromRoute] int categoriaId)
         {

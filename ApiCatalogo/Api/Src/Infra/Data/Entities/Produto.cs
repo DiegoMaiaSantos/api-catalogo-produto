@@ -1,4 +1,6 @@
-﻿namespace Api.Src.Modules.ApiCatalogo.Domain.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Api.Src.Modules.ApiCatalogo.Domain.Models
 {
     public class Produto
     {
@@ -9,6 +11,7 @@
         public string ImagemUrl { get; set; }
         public float Estoque { get; set; }
         public DateTime DataCadastro { get; set; }
+        [JsonIgnore]
         public virtual Categoria Categoria { get; set; }
     }
 }
