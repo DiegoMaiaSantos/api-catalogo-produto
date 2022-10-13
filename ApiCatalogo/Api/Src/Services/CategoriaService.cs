@@ -38,7 +38,7 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<Categoria> GetId(int categoriaId)
+        public async Task<CategoriaDto> GetId(int categoriaId)
         {
             try
             {
@@ -48,7 +48,7 @@ namespace Api.Src.Services
                     throw new AppException($"O id: {categoriaId} não existe na categoria.", 
                         StatusCodes.Status404NotFound);
 
-                return result;
+                return _mapper.Map<Categoria,CategoriaDto>(result);
             } 
             catch (Exception ex)
             {
@@ -57,7 +57,7 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<Categoria> PostNew(Categoria categoria)
+        public async Task<CategoriaDto> PostNew(Categoria categoria)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace Api.Src.Services
                     throw new AppException("Solicitação para criar uma nova categoria inválida.",
                         StatusCodes.Status400BadRequest);
 
-                return result;
+                return _mapper.Map<Categoria, CategoriaDto>(result);
             }
             catch (Exception ex)
             {
@@ -76,17 +76,17 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<Categoria> PutUpdate(Categoria categoria)
+        public async Task<CategoriaDto> PutUpdate(Categoria categoria)
         {
             try
             {
-                var result = await _categoriaRepository.UpdateCategoria(categoria);
+                Categoria result = await _categoriaRepository.UpdateCategoria(categoria);
 
                 if (result.CategoriaId != categoria.CategoriaId)
                     throw new AppException("Solicitação para atualizar uma categoria inválida.",
-                        StatusCodes.Status400BadRequest);                
+                        StatusCodes.Status400BadRequest);
 
-                return result;
+                return _mapper.Map<Categoria, CategoriaDto>(result);
             }
             catch (Exception ex)
             {
@@ -95,7 +95,7 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<Categoria> DeleteCategory(int categoriaId)
+        public async Task<CategoriaDto> DeleteCategory(int categoriaId)
         {
             try
             {
@@ -105,7 +105,7 @@ namespace Api.Src.Services
                     throw new AppException($"O id: {categoriaId} não existe na categoria.",
                         StatusCodes.Status404NotFound);
 
-                return result;
+                return _mapper.Map<Categoria, CategoriaDto>(result);
             }
             catch (Exception ex)
             {
