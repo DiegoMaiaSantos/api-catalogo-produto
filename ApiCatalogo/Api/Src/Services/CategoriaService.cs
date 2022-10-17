@@ -82,6 +82,9 @@ namespace Api.Src.Services
             {
                 Categoria result = await _categoriaRepository.UpdateCategoria(categoria);
 
+                categoria.Nome = categoria.Nome ?? result.Nome;
+                categoria.ImagemUrl = categoria.ImagemUrl ?? result.ImagemUrl;
+
                 if (result.CategoriaId != categoria.CategoriaId)
                     throw new AppException("Solicitação para atualizar uma categoria inválida.",
                         StatusCodes.Status400BadRequest);
