@@ -22,7 +22,7 @@ namespace Api.Src.Application.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CategoriaDto>>> GetAllCategoria()
+        public async Task<ActionResult> GetAllCategoria()
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Api.Src.Application.Controllers
         /// </summary>
         /// <param name="categoria"></param>
         /// <returns></returns>
-        [HttpPut("{categoriaId}")]
+        [HttpPut]
         public async Task<ActionResult> PutCategoria([FromBody] Categoria categoria)
         {
             try

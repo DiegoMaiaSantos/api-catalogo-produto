@@ -10,7 +10,7 @@ namespace Api.Src.Modules.ApiCatalogo.Domain.Models
         public decimal Preco { get; set; }
         public string ImagemUrl { get; set; }
         public float Estoque { get; set; }
-        public DateTime DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; }        
         [JsonIgnore]
         public virtual Categoria Categoria { get; set; }
     }
