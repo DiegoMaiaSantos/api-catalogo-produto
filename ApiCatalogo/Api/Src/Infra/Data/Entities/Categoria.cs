@@ -1,6 +1,7 @@
-﻿using System.Text.Json.Serialization;
+﻿using Api.Src.Modules.ApiCatalogo.Domain.Models;
+using System.Text.Json.Serialization;
 
-namespace Api.Src.Modules.ApiCatalogo.Domain.Models
+namespace Api.Src.Modules.ApiCatalogo.Domain
 {
     public class Categoria
     {
@@ -8,6 +9,6 @@ namespace Api.Src.Modules.ApiCatalogo.Domain.Models
         public string Nome { get; set; }
         public string ImagemUrl { get; set; }
         [JsonIgnore]
-        public virtual ICollection<Produto> Produtos { get; set; }
+        public virtual List<Produto> Produtos { get; set; }
     }
 }

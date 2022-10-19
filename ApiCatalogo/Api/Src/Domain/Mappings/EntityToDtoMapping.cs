@@ -1,5 +1,5 @@
 ﻿using Api.Src.Domain.Dtos;
-using Api.Src.Modules.ApiCatalogo.Domain.Models;
+using Api.Src.Modules.ApiCatalogo.Domain;
 using AutoMapper;
 
 namespace Api.Src.Domain.Mappings

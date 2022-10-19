@@ -9,8 +9,9 @@ namespace Api.Src.Modules.ApiCatalogo.Domain.Models
         public string Descricao { get; set; }
         public decimal Preco { get; set; }
         public string ImagemUrl { get; set; }
-        public float Estoque { get; set; }
-        public DateTime DataCadastro { get; set; }        
+        public int Estoque { get; set; }
+        public DateTime DataCadastro { get; set; } = DateTime.Now;
+        public int CategoriaProduto { get; set; }
         [JsonIgnore]
         public virtual Categoria Categoria { get; set; }
     }
