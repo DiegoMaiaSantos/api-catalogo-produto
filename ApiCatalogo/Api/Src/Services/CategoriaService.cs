@@ -1,7 +1,7 @@
 ﻿using Api.Src.Domain.Dtos;
 using Api.Src.Domain.Interfaces.Repositories;
 using Api.Src.Domain.Interfaces.Services;
-using Api.Src.Modules.ApiCatalogo.Domain.Models;
+using Api.Src.Modules.ApiCatalogo.Domain;
 using Api.Src.Shared.Application.Errors;
 using AutoMapper;
 using Serilog;
@@ -19,7 +19,7 @@ namespace Api.Src.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<CategoriaDto>> GetAll()
+        public async Task<List<CategoriaDto>> GetAll()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace Api.Src.Services
                     throw new AppException("A lista de categorias não foi encontrada.", 
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<IEnumerable<Categoria>, IEnumerable<CategoriaDto>>(result);
+                return _mapper.Map<List<Categoria>, List<CategoriaDto>>(result);
             }
             catch (Exception ex)
             {

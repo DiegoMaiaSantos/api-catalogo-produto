@@ -2,6 +2,7 @@
 using Api.Src.Config.Environments;
 using Api.Src.Infra.Ioc;
 using Microsoft.OpenApi.Models;
+using System.Text.Json.Serialization;
 
 namespace Api
 {
@@ -18,7 +19,8 @@ namespace Api
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(config =>
+                config.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             services.AddCors(options =>
                 options.AddPolicy(

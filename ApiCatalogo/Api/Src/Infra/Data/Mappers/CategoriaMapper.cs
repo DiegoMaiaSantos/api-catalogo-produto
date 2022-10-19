@@ -1,4 +1,4 @@
-﻿using Api.Src.Modules.ApiCatalogo.Domain.Models;
+﻿using Api.Src.Modules.ApiCatalogo.Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

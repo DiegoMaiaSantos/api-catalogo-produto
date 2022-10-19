@@ -1,5 +1,6 @@
 ﻿using Api.Src.Domain.Dtos;
 using Api.Src.Domain.Interfaces.Services;
+using Api.Src.Modules.ApiCatalogo.Domain;
 using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
 using Microsoft.AspNetCore.Mvc;

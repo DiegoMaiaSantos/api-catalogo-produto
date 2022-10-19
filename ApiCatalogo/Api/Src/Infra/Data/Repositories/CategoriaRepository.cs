@@ -1,6 +1,6 @@
 ﻿using Api.Src.Domain.Interfaces.Repositories;
 using Api.Src.Infra.Data.Contexts;
-using Api.Src.Modules.ApiCatalogo.Domain.Models;
+using Api.Src.Modules.ApiCatalogo.Domain;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -15,11 +15,14 @@ namespace Api.Src.Infra.Data.Repositories
             _catalogoDBContext = catalogoDBContext;
         }
 
-        public async Task<IEnumerable<Categoria>> FindAll()
+        public async Task<List<Categoria>> FindAll()
         {
             try
             {
-                return await _catalogoDBContext.Categorias.ToListAsync();                
+                return await _catalogoDBContext.Categorias
+                    .Include(p => p.Produtos)
+                    .AsNoTracking()
+                    .ToListAsync();                 
             }
             catch (Exception ex)
             {
@@ -32,8 +35,10 @@ namespace Api.Src.Infra.Data.Repositories
         {
             try
             {
-                return await _catalogoDBContext.Categorias.FirstOrDefaultAsync(
-                    c => c.CategoriaId == categoriaId);
+                return await _catalogoDBContext.Categorias
+                    .Include(p => p.Produtos)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(c => c.CategoriaId == categoriaId);
             }
             catch (Exception ex)
             {
