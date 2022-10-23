@@ -14,7 +14,7 @@ namespace Api.Src.Infra.Data.Mappers
 
             builder.HasMany(e => e.Produtos)
                 .WithOne(e => e.Categoria)
-                .HasForeignKey(e => e.ProdutoId);
+                .HasForeignKey(e => e.CategoriaProduto);
 
             builder.Property(e => e.CategoriaId)
                 .HasColumnName("CATEGORIA_ID");
