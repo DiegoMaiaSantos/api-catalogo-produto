@@ -1,23 +1,23 @@
 ﻿using Api.Src.Domain.Interfaces.Services;
-using Api.Src.Modules.ApiCatalogo.Domain;
+using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Src.Application.Controllers
 {
-    [Route("api/catalogo")]
+    [Route("api/produto")]
     [ApiController]
-    public class CategoriaController : ControllerBase
+    public class ProdutoController : ControllerBase
     {
-        private readonly ICategoriaService _categoriaService;
+        private readonly IProdutoService _produtoService;
 
-        public CategoriaController(ICategoriaService categoriaService)
+        public ProdutoController(IProdutoService produtoService)
         {
-            _categoriaService = categoriaService;
+            _produtoService = produtoService;
         }
 
         /// <summary>
-        /// Busca uma lista das categorias
+        /// Busca uma lista de todos os produtos
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -25,7 +25,7 @@ namespace Api.Src.Application.Controllers
         {
             try
             {
-                var data = await _categoriaService.GetAll();
+                var data = await _produtoService.GetAll();
 
                 return Ok(data);
             }
@@ -37,16 +37,16 @@ namespace Api.Src.Application.Controllers
         }
 
         /// <summary>
-        /// Busca uma categoria pela id
+        /// Busca um produto pela id
         /// </summary>
-        /// <param name="categoriaId"></param>
+        /// <param name="produtoId"></param>
         /// <returns></returns>
-        [HttpGet("{categoriaId}")]
-        public async Task<ActionResult> GetByIdCategoria([FromRoute] int categoriaId)
+        [HttpGet("{produtoId}")]
+        public async Task<ActionResult> GetByIdCategoria([FromRoute] int produtoId)
         {
             try
             {
-                var data = await _categoriaService.GetId(categoriaId);
+                var data = await _produtoService.GetId(produtoId);
 
                 return Ok(data);
             }
@@ -58,16 +58,16 @@ namespace Api.Src.Application.Controllers
         }
 
         /// <summary>
-        /// Cria uma nova categoria
+        /// Cria um novo produto
         /// </summary>
-        /// <param name="categoria"></param>
+        /// <param name="produto"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult> PostCategoria(Categoria categoria)
+        public async Task<ActionResult> PostCategoria(Produto produto)
         {
             try
             {
-                var data = await _categoriaService.PostNew(categoria);
+                var data = await _produtoService.PostNew(produto);
 
                 return Ok(data);
             }
@@ -79,16 +79,16 @@ namespace Api.Src.Application.Controllers
         }
 
         /// <summary>
-        /// Atualiza uma categoria pela id
+        /// Atualiza um produto pela id
         /// </summary>
-        /// <param name="categoria"></param>
+        /// <param name="produto"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult> PutCategoria([FromBody] Categoria categoria)
+        public async Task<ActionResult> PutCategoria([FromBody] Produto produto)
         {
             try
             {
-                var data = await _categoriaService.PutUpdate(categoria);
+                var data = await _produtoService.PutUpdate(produto);
 
                 return Ok(data);
             }
@@ -100,16 +100,16 @@ namespace Api.Src.Application.Controllers
         }
 
         /// <summary>
-        /// Deleta uma categoria pela id
+        /// Deleta um produto pela id
         /// </summary>
-        /// <param name="categoriaId"></param>
+        /// <param name="produtoId"></param>
         /// <returns></returns>
-        [HttpDelete("{categoriaId}")]
-        public async Task<ActionResult> DeleteCategoria([FromRoute] int categoriaId)
+        [HttpDelete("{produtoId}")]
+        public async Task<ActionResult> DeleteCategoria([FromRoute] int produtoId)
         {
             try
             {
-                var data = await _categoriaService.DeleteCategory(categoriaId);
+                var data = await _produtoService.DeleteCategory(produtoId);
 
                 return Ok(data);
             }

@@ -1,8 +1,8 @@
-﻿using System.Text.Json.Serialization;
+﻿using Api.Src.Modules.ApiCatalogo.Domain;
 
-namespace Api.Src.Modules.ApiCatalogo.Domain.Models
+namespace Api.Src.Domain.Dtos
 {
-    public class Produto
+    public class ProdutoDto
     {
         public int ProdutoId { get; set; }
         public string Nome { get; set; }
@@ -12,7 +12,6 @@ namespace Api.Src.Modules.ApiCatalogo.Domain.Models
         public int? Estoque { get; set; }
         public DateTime? DataCadastro { get; set; } = DateTime.Now;
         public int? CategoriaProduto { get; set; }
-        [JsonIgnore]
         public virtual Categoria Categoria { get; set; }
     }
 }

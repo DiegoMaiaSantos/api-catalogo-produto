@@ -11,6 +11,7 @@ namespace Api.Src.Shared.Infra.Ioc.Factorys
         {
             repositories.AddScoped<IUnitOfWork, UnitOfWork>();
             repositories.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            repositories.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             return repositories;        
         }
