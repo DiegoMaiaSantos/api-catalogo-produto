@@ -105,7 +105,7 @@ namespace Api.Src.Services
                 var result = await _categoriaRepository.DeleteById(categoriaId);
 
                 if (result is null)
-                    throw new AppException($"O id: {categoriaId} não existe na categoria.",
+                    throw new AppException($"O id: {categoriaId} não existe nas categorias.",
                         StatusCodes.Status404NotFound);
 
                 return _mapper.Map<Categoria, CategoriaDto>(result);

@@ -10,6 +10,8 @@ namespace Api.Src.Shared.Infra.Ioc.Factorys
         {
             services.AddAutoMapper(typeof(DtoToEntityMapping));
             services.AddScoped<ICategoriaService, CategoriaService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
+
             return services;        
         }
     }

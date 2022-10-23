@@ -9,7 +9,5 @@ namespace Api.Src.Domain.Interfaces.Repositories
         public Task<Categoria> CreateNewCategoria(Categoria categoria);
         public Task<Categoria> UpdateCategoria(Categoria categoria);
         public Task<Categoria> DeleteById(int categoriaId);
-
-
     }
 }

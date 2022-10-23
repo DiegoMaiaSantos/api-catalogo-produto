@@ -1,5 +1,4 @@
 ﻿using Api.Src.Modules.ApiCatalogo.Domain.Models;
-using System.Text.Json.Serialization;
 
 namespace Api.Src.Domain.Dtos
 {
