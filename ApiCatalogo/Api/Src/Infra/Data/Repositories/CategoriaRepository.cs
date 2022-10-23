@@ -20,7 +20,6 @@ namespace Api.Src.Infra.Data.Repositories
             try
             {
                 return await _catalogoDBContext.Categorias
-                    .Include(p => p.Produtos)
                     .AsNoTracking()
                     .ToListAsync();                 
             }
@@ -36,8 +35,6 @@ namespace Api.Src.Infra.Data.Repositories
             try
             {
                 return await _catalogoDBContext.Categorias
-                    .Include(p => p.Produtos)
-                    .AsNoTracking()
                     .FirstOrDefaultAsync(c => c.CategoriaId == categoriaId);
             }
             catch (Exception ex)
