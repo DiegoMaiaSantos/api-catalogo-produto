@@ -23,13 +23,13 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _produtoRepository.FindAll();
+                List<Produto> result = await _produtoRepository.FindAll();
 
                 if (result is null)
                     throw new AppException("A lista de produtos não foi encontrada.",
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<List<Produto>, List<ProdutoDto>>(result);
+                return _mapper.Map<List<ProdutoDto>>(result);
             }
             catch (Exception ex)
             {
@@ -42,13 +42,13 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _produtoRepository.FindById(produtoId);
+                Produto result = await _produtoRepository.FindById(produtoId);
 
                 if (result == null)
                     throw new AppException($"O id: {produtoId} não existe nos produtos.",
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<Produto, ProdutoDto>(result);
+                return _mapper.Map<ProdutoDto>(result);
             }
             catch (Exception ex)
             {
@@ -57,17 +57,17 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<ProdutoDto> PostNew(Produto produto)
+        public async Task<PostProdutoDto> PostNew(Produto produto)
         {
             try
             {
-                var result = await _produtoRepository.CreateNewCategoria(produto);
+                Produto result = await _produtoRepository.CreateNewCategoria(produto);
 
                 if (result is null)
                     throw new AppException("Solicitação para criar um novo produto inválida.",
                         StatusCodes.Status400BadRequest);
 
-                return _mapper.Map<Produto, ProdutoDto>(result);
+                return _mapper.Map<PostProdutoDto>(result);
             }
             catch (Exception ex)
             {
@@ -76,11 +76,11 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<ProdutoDto> PutUpdate(Produto produto)
+        public async Task PutUpdate(UpdateProdutoDto produto)
         {
             try
             {
-                Produto result = await _produtoRepository.UpdateCategoria(produto);
+                var result = await _produtoRepository.FindById(produto.ProdutoId);
 
                 produto.Nome = produto.Nome ?? result.Nome;
                 produto.Descricao = produto.Descricao ?? result.Descricao;
@@ -94,7 +94,9 @@ namespace Api.Src.Services
                     throw new AppException("Solicitação para atualizar um prdouto inválida.",
                         StatusCodes.Status400BadRequest);
 
-                return _mapper.Map<Produto, ProdutoDto>(result);
+                result = _mapper.Map(produto, result);
+
+                await _produtoRepository.UpdateCategoria(result);
             }
             catch (Exception ex)
             {
@@ -107,13 +109,13 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _produtoRepository.DeleteById(produtoId);
+                Produto result = await _produtoRepository.DeleteById(produtoId);
 
                 if (result is null)
                     throw new AppException($"O id: {produtoId} não existe nos produtos.",
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<Produto, ProdutoDto>(result);
+                return _mapper.Map<ProdutoDto>(result);
             }
             catch (Exception ex)
             {

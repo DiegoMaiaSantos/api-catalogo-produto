@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Src\Domain\Dtos\" />
     <Folder Include="Src\Infra\CrossCutting\Helpers\" />
   </ItemGroup>
 
