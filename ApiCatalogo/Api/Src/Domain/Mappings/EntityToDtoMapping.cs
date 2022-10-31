@@ -11,6 +11,10 @@ namespace Api.Src.Domain.Mappings
         {
             CreateMap<Categoria, CategoriaDto>();
             CreateMap<Produto, ProdutoDto>();
+            CreateMap<Categoria, UpdateCategoriaDto>();
+            CreateMap<Produto, UpdateProdutoDto>();
+            CreateMap<Categoria, PostCategoriaDto>();
+            CreateMap<Produto,PostProdutoDto>();
         }
     }
 }
