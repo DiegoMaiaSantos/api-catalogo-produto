@@ -1,4 +1,5 @@
-﻿using Api.Src.Domain.Interfaces.Services;
+﻿using Api.Src.Domain.Dtos;
+using Api.Src.Domain.Interfaces.Services;
 using Api.Src.Modules.ApiCatalogo.Domain;
 using Api.Src.Shared.Application.Errors;
 using Microsoft.AspNetCore.Mvc;
@@ -81,16 +82,16 @@ namespace Api.Src.Application.Controllers
         /// <summary>
         /// Atualiza uma categoria pela id
         /// </summary>
-        /// <param name="categoria"></param>
+        /// <param name="categoriaDto"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult> PutCategoria([FromBody] Categoria categoria)
+        public async Task<ActionResult> PutCategoria([FromBody] UpdateCategoriaDto categoriaDto)
         {
             try
             {
-                var data = await _categoriaService.PutUpdate(categoria);
+                await _categoriaService.PutUpdate(categoriaDto);
 
-                return Ok(data);
+                return Ok(categoriaDto);
             }
             catch (AppException ex)
             {
@@ -109,9 +110,9 @@ namespace Api.Src.Application.Controllers
         {
             try
             {
-                var data = await _categoriaService.DeleteCategory(categoriaId);
+                await _categoriaService.DeleteCategory(categoriaId);
 
-                return Ok(data);
+                return Ok(categoriaId);
             }
             catch (AppException ex)
             {

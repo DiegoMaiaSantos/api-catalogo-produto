@@ -1,4 +1,5 @@
-﻿using Api.Src.Domain.Interfaces.Services;
+﻿using Api.Src.Domain.Dtos;
+using Api.Src.Domain.Interfaces.Services;
 using Api.Src.Modules.ApiCatalogo.Domain.Models;
 using Api.Src.Shared.Application.Errors;
 using Microsoft.AspNetCore.Mvc;
@@ -81,16 +82,16 @@ namespace Api.Src.Application.Controllers
         /// <summary>
         /// Atualiza um produto pela id
         /// </summary>
-        /// <param name="produto"></param>
+        /// <param name="produtoDto"></param>
         /// <returns></returns>
         [HttpPut]
-        public async Task<ActionResult> PutCategoria([FromBody] Produto produto)
+        public async Task<ActionResult> PutCategoria([FromBody] UpdateProdutoDto produtoDto)
         {
             try
             {
-                var data = await _produtoService.PutUpdate(produto);
+                await _produtoService.PutUpdate(produtoDto);
 
-                return Ok(data);
+                return Ok(produtoDto);
             }
             catch (AppException ex)
             {

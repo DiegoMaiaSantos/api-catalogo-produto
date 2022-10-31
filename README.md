@@ -29,7 +29,7 @@
 ***
 ## 📷 Relacionamento de entidades: 
 <p align ="center">
- <img src ="" width =""/>
+ <img src ="https://github.com/DiegoMaiaSantos/imagens-projetos-variados/blob/main/api-catalogo-produto-readme/ApiCatalogo_Diagrama.png?raw=true" width =""/>
  </p>
 
 ***

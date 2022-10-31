@@ -23,13 +23,13 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _categoriaRepository.FindAll();
+                List<Categoria> result = await _categoriaRepository.FindAll();
 
                 if (result is null)
                     throw new AppException("A lista de categorias não foi encontrada.", 
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<List<Categoria>, List<CategoriaDto>>(result);
+                return _mapper.Map<List<CategoriaDto>>(result);
             }
             catch (Exception ex)
             {
@@ -42,13 +42,13 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _categoriaRepository.FindById(categoriaId);
+                Categoria result = await _categoriaRepository.FindById(categoriaId);
 
                 if (result == null)
                     throw new AppException($"O id: {categoriaId} não existe na categoria.", 
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<Categoria,CategoriaDto>(result);
+                return _mapper.Map<CategoriaDto>(result);
             } 
             catch (Exception ex)
             {
@@ -61,13 +61,13 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _categoriaRepository.CreateNewCategoria(categoria);
+                Categoria result = await _categoriaRepository.CreateNewCategoria(categoria);
 
                 if (result is null)
                     throw new AppException("Solicitação para criar uma nova categoria inválida.",
                         StatusCodes.Status400BadRequest);
 
-                return _mapper.Map<Categoria, CategoriaDto>(result);
+                return _mapper.Map<CategoriaDto>(result);
             }
             catch (Exception ex)
             {
@@ -76,11 +76,11 @@ namespace Api.Src.Services
             }
         }
 
-        public async Task<CategoriaDto> PutUpdate(Categoria categoria)
+        public async Task PutUpdate(UpdateCategoriaDto categoria)
         {
             try
             {
-                Categoria result = await _categoriaRepository.UpdateCategoria(categoria);
+                Categoria result = await _categoriaRepository.FindById(categoria.CategoriaId);
 
                 categoria.Nome = categoria.Nome ?? result.Nome;
                 categoria.ImagemUrl = categoria.ImagemUrl ?? result.ImagemUrl;
@@ -89,7 +89,9 @@ namespace Api.Src.Services
                     throw new AppException("Solicitação para atualizar uma categoria inválida.",
                         StatusCodes.Status400BadRequest);
 
-                return _mapper.Map<Categoria, CategoriaDto>(result);
+                result = _mapper.Map(categoria, result);
+
+                await _categoriaRepository.UpdateCategoria(result);                
             }
             catch (Exception ex)
             {
@@ -102,13 +104,20 @@ namespace Api.Src.Services
         {
             try
             {
-                var result = await _categoriaRepository.DeleteById(categoriaId);
 
-                if (result is null)
+                Categoria categoria = await _categoriaRepository.FindById(categoriaId);
+
+                categoria.Produtos = null;
+
+                if (categoria.CategoriaId != categoriaId)
                     throw new AppException($"O id: {categoriaId} não existe nas categorias.",
                         StatusCodes.Status404NotFound);
 
-                return _mapper.Map<Categoria, CategoriaDto>(result);
+                await _categoriaRepository.UpdateCategoria(categoria);
+
+                await _categoriaRepository.DeleteById(categoriaId);
+
+                return _mapper.Map<CategoriaDto>(categoria);
             }
             catch (Exception ex)
             {
