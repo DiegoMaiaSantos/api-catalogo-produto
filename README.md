@@ -23,7 +23,7 @@
 ***
 ## 📷 Arquitetura do projeto: 
 <p align ="center">
- <img src ="" width =""/>
+ <img src ="https://github.com/DiegoMaiaSantos/imagens-projetos-variados/blob/main/api-catalogo-produto-readme/arquitetura-ddd.jpg" width =""/>
  </p>
 
 ***
@@ -35,11 +35,11 @@
 ***
 ## 📷 Imagens do projeto: 
 <p align ="center">
- <img src ="" width =""/>
+ <img src ="https://github.com/DiegoMaiaSantos/imagens-projetos-variados/blob/main/api-catalogo-produto-readme/swagger-apicatalogo-01.png" width =""/>
  </p>
  
  <p align ="center">
- <img src ="" width =""/>
+ <img src ="https://github.com/DiegoMaiaSantos/imagens-projetos-variados/blob/main/api-catalogo-produto-readme/swagger-apicatalogo-02.png" width =""/>
  </p>   
 
 ***
