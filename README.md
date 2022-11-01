@@ -1,8 +1,17 @@
-# api-catalogo-produto
+# <h1 align="center">API Catalogo Produto</h1>
 
 [![GitHub license](https://img.shields.io/github/license/DiegoMaiaSantos/api-catalogo-produto)](https://github.com/DiegoMaiaSantos/api-catalogo-produto/blob/main/LICENSE)
 
- Nesse projeto, estou desenvolvendo uma API que tem como principal função realizar um CRUD nas categorias e produtos de um estabelecimento.
+ <p>
+ Esse projeto tem como principal objetivo, desenvolver meus conhecimentos adquiridos diariamente no estágio, então peguei uma ideia simples e utilizei grande parte da experiencia que tenho tido, para fixar melhor os estudos e as rotinas diárias de um programador. 
+Inicialmente planejava utilizar a abordagem code first, usando migration do Entity framework para criar o banco de dados e suas tabelas, de maneira quase que automática, mas como queria ampliar o conhecimento na abordagem de mapeamentos com o banco sendo criado manualmente no SQL Server, fiz o banco CatalogoDB e suas tabelas, sendo CATEGORIA E PRODUTO, fiz o desenho do relacionamento das entidades (desenho está logo abaixo) e passo detalhes sobre informações de cada coluna, também criei a FOREIGN KEY (PK_PRODUTO_CATEGORIA) para trabalhar a troca de informações entre as tabelas. Caso tenha interesse em clonar a API, é necessário criar o mesmo banco na sua máquina, lembrando que a configuração é toda realizada para SQL Server.
+Essa API (Application Programming Interface) serve como um intermediário de um software que vai permitir que dois aplicativos possam se comunicar. Eu fiz apenas o backend, mas se o caso fosse outro, onde tivesse desenvolvido a aplicação e a interface, front e back, essa API iria receber as requisições de uma interface e dentro de toda a aplicação, ela iria percorrer os controllers que iria buscar na services, as regras do negócio, praticamente é onde fica a maior parte da lógica e depois iria nos repository, que é onde acontece a troca de informações da aplicação com o banco de dados, e assim ela retorna fazendo o inverso do que foi caminhado até chegar novamente nas controllers e repassar a informação requisitada pela interface. No caso da minha API, é possível buscar uma lista, buscar pelo id, criar, atualizar ou deletar, seja uma categoria ou um produto, mais conhecido como um CRUD.
+Usei o modelo de arquitetura DDD (Domain Driven Design) para manter a organização e manutenção dos processos da API. Esse modelo tem como característica facilitar a implementação de regras e processos complexos, onde trás a divisão das responsabilidades por camadas, e pode ser usado por qualquer tecnologia. (desenho está logo abaixo)
+Foi implementado Health Checks para acompanhar a saúde da API, ele é um middleware que fornece um endpoint que vai nos trazer a situação da aplicação, é uma forma de dizer que a aplicação está saudável ou não para uma solicitação web. Em conjunto implementei o serilog, pois tinha planos de realizar acompanhamento de loggin da aplicação.
+Realizei uma mesclagem entre as versões 5 e 6 do .Net para configurar as classes program.cs e startup.cs, assim me dando a oportunidade de trabalhar com mais camadas de segurança nas conexões do banco de dados. 
+Para documentar a aplicação usei o framework Swagger, que oferece muitas ferramentas, ajuda na descrição, no consumo e na visualização dos serviços. Também pode ser usado com qualquer linguagem de programação.
+Os commits e as Branchs foram feitos seguindo regras para manter uma boa organização e utilizando o Git Bash.
+ </p>
 
  <p align="center">
 <img src="http://img.shields.io/static/v1?label=STATUS&message=%20ANDAMENTO&color=YELLOW&style=for-the-badge"/>
